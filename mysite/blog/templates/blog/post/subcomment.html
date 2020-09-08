@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block title %}make a subcomment{% endblock %}
+{% block content %}
+    <h2>
+    <a href="{{ post.get_absolute_url }}">
+    Back to {{ post.title }}
+    </a>
+    </h2>
+    {% if sent %}
+        <h1>comment successfully sent</h1>
+
+    {% else %}
+        <h1>Reply to {{comment.name}}</h1>
+        <form action="." method="post">
+        {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Add comment">
+        </form>
+    {% endif %}
+{% endblock %}
